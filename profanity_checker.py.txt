@@ -1,0 +1,24 @@
+import urllib
+
+def text_reader ():
+  select_file = open("D:\Apple\Udacity\Python\LESSONS\Mini Projects Tests\Profanity Editor\Some Quotes Sample.txt")
+
+  file_contents = select_file.read()
+  print file_contents
+  select_file.close()
+  profanity_checker(file_contents)
+
+def profanity_checker  (text_to_check):
+  connection = urllib.urlopen("http://www.wdylike.appspot.com/?q="+text_to_check)
+  output = connection.read()
+  connection.close()
+  # print output
+  if "True" in output:
+    print ("Profanity Alert!!")
+  elif "False" in output:
+    print ("No course words detected")
+  else:
+    print ("Cannot check this document proparly!")
+ 
+
+text_reader ()
